@@ -82,10 +82,10 @@
 
 % Part command (for answer choices or multiple parts)
 % Param: text
-\newcommand{\option}[1]{
-    \vspace{2mm}
+\newcommand{\option}[2][2]{
+    \vspace{#1mm}
     \begin{adjustwidth}{12mm}{0mm}
-        \stepcounter{acounter}\textbf{\Alph{acounter}.} #1
+        \stepcounter{acounter}\textbf{\Alph{acounter}.} #2
     \end{adjustwidth}
 }
 
