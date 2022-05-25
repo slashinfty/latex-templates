@@ -1,0 +1,94 @@
+\ProvidesPackage{assessment}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[top=25mm,bottom=22mm,left=17mm,right=17mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage[export]{adjustbox}
+\usepackage{titling}
+\usepackage{changepage}
+
+% Option to remove headers after page one
+\DeclareOption{nohead}{
+    \fancyhead{}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% Image folder
+\graphicspath{ {./images/} }
+
+% No indenting
+\setlength{\parindent}{0pt}
+
+% Title and course names
+\newcommand{\titlename}{Title}
+\newcommand{\coursename}{Course}
+
+% Setting title and course names
+\newcommand{\settitle}[1]{\renewcommand{\titlename}{#1}}
+\newcommand{\setcourse}[1]{\renewcommand{\coursename}{#1}}
+
+% Set up title
+\title{\titlename}
+\author{\coursename}
+\date{}
+
+% Counters for questions and answers
+\newcounter{qcounter}
+\newcounter{acounter}[qcounter]
+
+% Header
+\pagestyle{fancy}
+\fancyhead[L]{\textsc{\titlename}}
+\fancyhead[R]{\textsc{\coursename}}
+% Footer
+\fancyfoot[C]{Page \thepage}
+\renewcommand{\footrulewidth}{1pt}
+% Header for first page
+\fancypagestyle{first}{
+    \renewcommand{\headrulewidth}{0pt}
+    \lhead{
+        \parbox{0.45\textwidth}{Name: \hrulefill}
+    }
+    \rhead{
+        \parbox{0.25\textwidth}{Date: \hrulefill}\;
+        \parbox{0.15\textwidth}{Period: \hrulefill}
+    }
+}
+% Move title up on page
+\setlength{\droptitle}{-20mm}
+
+% Process option to remove headers
+\ProcessOptions
+
+% Question command
+% Param: text
+\newcommand{\question}[1]{
+    \stepcounter{qcounter}\textbf{\arabic{qcounter}.} #1
+}
+
+% Question with diagram command
+% Params: image file, text
+\newcommand{\questiond}[2]{
+    \begin{wrapfigure}{r}{0.4\textwidth}
+        \includegraphics[width=0.38\textwidth,keepaspectratio=true,center]{#1}
+    \end{wrapfigure}
+    \stepcounter{qcounter}\textbf{\arabic{qcounter}.} #2
+}
+
+% Part command (for answer choices or multiple parts)
+% Param: text
+\newcommand{\part}[1]{
+    \vspace{2mm}
+    \begin{adjustwidth}{12mm}{0mm}
+        \stepcounter{acounter}\textbf{\Alph{acounter}.} #1
+    \end{adjustwidth}
+}
+
+% Important command (for directions or notes)
+% Params: keyword, text
+\newcommand{\important}[2]{
+    \textsc{#1}: #2
+}
