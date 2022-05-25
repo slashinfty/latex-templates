@@ -3,6 +3,7 @@
 % Packages
 \usepackage[utf8]{inputenc}
 \usepackage[top=25mm,bottom=22mm,left=17mm,right=17mm]{geometry}
+\usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{fancyhdr}
@@ -43,6 +44,7 @@
 \pagestyle{fancy}
 \fancyhead[L]{\textsc{\titlename}}
 \fancyhead[R]{\textsc{\coursename}}
+\setlength{\headheight}{13.6pt}
 % Footer
 \fancyfoot[C]{Page \thepage}
 \renewcommand{\footrulewidth}{1pt}
@@ -66,21 +68,21 @@
 % Question command
 % Param: text
 \newcommand{\question}[1]{
-    \stepcounter{qcounter}\textbf{\arabic{qcounter}.} #1
+    \par\stepcounter{qcounter}\textbf{\arabic{qcounter}.} #1
 }
 
 % Question with diagram command
 % Params: image file, text
-\newcommand{\questiond}[2]{
-    \begin{wrapfigure}{r}{0.4\textwidth}
-        \includegraphics[width=0.38\textwidth,keepaspectratio=true,center]{#1}
+\newcommand{\questiond}[4]{
+    \par\begin{wrapfigure}[#3]{r}{#2\textwidth}
+        \includegraphics[width=#2\textwidth,keepaspectratio=true,center]{#1}
     \end{wrapfigure}
-    \stepcounter{qcounter}\textbf{\arabic{qcounter}.} #2
+    \stepcounter{qcounter}\textbf{\arabic{qcounter}.} #4
 }
 
 % Part command (for answer choices or multiple parts)
 % Param: text
-\newcommand{\part}[1]{
+\newcommand{\option}[1]{
     \vspace{2mm}
     \begin{adjustwidth}{12mm}{0mm}
         \stepcounter{acounter}\textbf{\Alph{acounter}.} #1
