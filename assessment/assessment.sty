@@ -73,9 +73,9 @@
 
 % Question with diagram command
 % Params: image file, text
-\newcommand{\questiond}[4]{
-    \par\begin{wrapfigure}[#3]{r}{#2\textwidth}
-        \includegraphics[width=#2\textwidth,keepaspectratio=true,center]{#1}
+\newcommand{\questiond}[4][1]{
+    \par\begin{wrapfigure}[#1]{r}{#3\textwidth}
+        \includegraphics[width=#3\textwidth,keepaspectratio=true,center]{#2}
     \end{wrapfigure}
     \stepcounter{qcounter}\textbf{\arabic{qcounter}.} #4
 }
