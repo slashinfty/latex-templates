@@ -1,0 +1,60 @@
+\ProvidesPackage{lesson}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[top=25mm,bottom=22mm,left=17mm,right=17mm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage[export]{adjustbox}
+\usepackage{titling}
+\usepackage{changepage}
+
+% Image folder
+\graphicspath{ {./images/} }
+
+% No indenting
+\setlength{\parindent}{0pt}
+
+% Title and course names
+\newcommand{\titlename}{Title}
+\newcommand{\subtitlename}{Subtitle}
+\newcommand{\coursename}{Course}
+
+% Setting title and course names
+\newcommand{\settitle}[1]{\renewcommand{\titlename}{#1}}
+\newcommand{\setsubtitle}[1]{\renewcommand{\subtitlename}{#1}}
+\newcommand{\setcourse}[1]{\renewcommand{\coursename}{#1}}
+
+% Set up title
+\title{\titlename\\\subtitlename}
+\author{\coursename}
+\date{}
+
+% Header
+\pagestyle{fancy}
+\fancyhead[L]{\textsc{\titlename}}
+\fancyhead[C]{\textsc{\subtitlename}}
+\fancyhead[R]{\textsc{\coursename}}
+\setlength{\headheight}{13.6pt}
+% Footer
+\fancyfoot[C]{Page \thepage}
+\renewcommand{\footrulewidth}{1pt}
+% Header for first page
+\fancypagestyle{first}{
+    \renewcommand{\headrulewidth}{0pt}
+    \lhead{}
+    \chead{}
+    \rhead{
+        \parbox{0.45\textwidth}{Name: \hrulefill}
+    }
+}
+% Move title up on page
+\setlength{\droptitle}{-20mm}
+
+% Insert image
+% Params: height in mm, alignment, file
+\newcommand{\diagram}[3]{
+	\includegraphics[height=#1mm,keepaspectratio=true,#2]{#3}
+}
