@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[top=25mm,bottom=22mm,left=17mm,right=17mm]{geometry}
 \usepackage{amsmath}
+\usepackage[safe]{tipa}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{fancyhdr}
@@ -64,6 +65,13 @@
 
 % Process option to remove headers
 \ProcessOptions
+
+% Ugly fix for arc notation
+\newcommand{\arc}[1]{
+	{\setbox9=\hbox{#1}\ooalign{
+		\resizebox{\wd9}{\height}{\texttoptiebar{\phantom{A}}}\cr#1
+	}}
+}
 
 % Question command
 % Param: text

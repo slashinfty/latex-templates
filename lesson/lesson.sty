@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[top=25mm,bottom=22mm,left=17mm,right=17mm]{geometry}
 \usepackage{amsmath}
+\usepackage[safe]{tipa}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{fancyhdr}
@@ -52,6 +53,13 @@
 }
 % Move title up on page
 \setlength{\droptitle}{-20mm}
+
+% Ugly fix for arc notation
+\newcommand{\arc}[1]{
+	{\setbox9=\hbox{#1}\ooalign{
+		\resizebox{\wd9}{\height}{\texttoptiebar{\phantom{A}}}\cr#1
+	}}
+}
 
 % Insert image
 % Params: height in mm, alignment, file
